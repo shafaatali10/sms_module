@@ -28,9 +28,9 @@ const accountMenuItems = (
     <MenuItem id="login-item" icon="sign-in-alt" to="/login">
       Sign in
     </MenuItem>
-    <MenuItem icon="sign-in-alt" to="/account/register">
+    {/*<MenuItem icon="sign-in-alt" to="/account/register">
       Register
-    </MenuItem>
+    </MenuItem>*/}
   </>
 );
 

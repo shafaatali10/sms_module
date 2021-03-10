@@ -2,7 +2,7 @@ import './header.scss';
 
 import React, { useState } from 'react';
 
-import { Navbar, Nav, NavbarToggler, NavbarBrand, Collapse } from 'reactstrap';
+import { Navbar, Nav, NavbarToggler, NavbarBrand, Collapse, NavItem, NavLink } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import { NavLink as Link } from 'react-router-dom';
@@ -10,6 +10,7 @@ import LoadingBar from 'react-redux-loading-bar';
 
 import { Home, Brand } from './header-components';
 import { AdminMenu, EntitiesMenu, AccountMenu } from '../menus';
+import MenuItem from "app/shared/layout/menus/menu-item";
 
 export interface IHeaderProps {
   isAuthenticated: boolean;
@@ -43,7 +44,25 @@ const Header = (props: IHeaderProps) => {
         <Collapse isOpen={menuOpen} navbar>
           <Nav id="header-tabs" className="ml-auto" navbar>
             <Home />
-            {props.isAuthenticated && <EntitiesMenu />}
+            {props.isAuthenticated && props.isAdmin &&
+            <NavItem>
+              <NavLink tag={Link} to="/config" className="d-flex align-items-center">
+                <FontAwesomeIcon icon="list"/>
+                <span>&nbsp; Configuration</span>
+              </NavLink>
+            </NavItem>
+            }
+
+            {props.isAuthenticated &&
+            <NavItem>
+              <NavLink tag={Link} to="/sms" className="d-flex align-items-center">
+                <FontAwesomeIcon icon="envelope"/>
+                <span>&nbsp;Inbox</span>
+              </NavLink>
+            </NavItem>
+            }
+
+            {/*{props.isAuthenticated && <EntitiesMenu />}*/}
             {props.isAuthenticated && props.isAdmin && (
               <AdminMenu showSwagger={props.isSwaggerEnabled} showDatabase={!props.isInProduction} />
             )}

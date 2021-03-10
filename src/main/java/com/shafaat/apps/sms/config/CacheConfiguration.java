@@ -50,6 +50,8 @@ public class CacheConfiguration {
             createCache(cm, com.shafaat.apps.sms.domain.User.class.getName() + ".authorities");
             createCache(cm, com.shafaat.apps.sms.domain.PersistentToken.class.getName());
             createCache(cm, com.shafaat.apps.sms.domain.User.class.getName() + ".persistentTokens");
+            createCache(cm, com.shafaat.apps.sms.domain.Config.class.getName());
+            createCache(cm, com.shafaat.apps.sms.domain.Sms.class.getName());
             // jhipster-needle-ehcache-add-entry
         };
     }

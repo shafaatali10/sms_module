@@ -1,0 +1,2 @@
+id;config_name;config_value;description
+1;SERIAL_PORT;/dev/ttyUSB0;The serial port through which the USB Modem is connect to.

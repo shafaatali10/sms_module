@@ -29,7 +29,7 @@ const render = Component =>
       <Provider store={store}>
         <div>
           {/* If this slows down the app in dev disable it and enable when required  */}
-          {devTools}
+          {/*{devTools}*/}
           <Component />
         </div>
       </Provider>
