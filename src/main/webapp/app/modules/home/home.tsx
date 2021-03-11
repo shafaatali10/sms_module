@@ -1,5 +1,4 @@
 import './home.scss';
-import Image from './iphone-message.jpg';
 
 import React from 'react';
 import { Link } from 'react-router-dom';
@@ -13,6 +12,8 @@ export type IHomeProp = StateProps;
 
 export const Home = (props: IHomeProp) => {
   const { account } = props;
+
+  // const Image = require('./iphone-message.jpg')
 
   return (
     <Row>
@@ -53,7 +54,7 @@ export const Home = (props: IHomeProp) => {
 
       </Col>
       <Col md="3" className="pad">
-        <span className="rounded float-right" > <img src={Image} style={{height: '550px', margin: '0 auto'}}/> </span>
+        <span className="rounded float-right" > <img src='content/images/iphone-message.jpg' style={{height: '550px', margin: '0 auto'}}/> </span>
       </Col>
     </Row>
   );
