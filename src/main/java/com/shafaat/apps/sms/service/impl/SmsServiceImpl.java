@@ -12,6 +12,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -67,35 +68,65 @@ public class SmsServiceImpl implements SmsService {
         smsRepository.deleteById(id);
     }
 
+    // 60 sec * 15 = 15 min
+    @Scheduled(fixedRate = 60000)
     public void scanIncomingSms(){
         Optional<Config> configVal = configRepository.findByConfigName("SERIAL_PORT");
 
 
-        if( 1==1 ){
+        /*if( 1==1 ){
             System.out.println("BOOOOOOOOM ----> " + configVal.get().getConfigValue());
             return;
-        }
+        }*/
 
         gsmUtils.initialize(configVal.get().getConfigValue());
+        gsmUtils.executeAT("AT+CMGF=1"); // To set text mode
         gsmUtils.executeAT("AT+CSCS=\"IRA\""); // To set normal English mode
 
+        //List<Sms> smsList = new ArrayList<>();
+
+        String result = gsmUtils.executeAT("AT+CMGL=\"ALL\"");
+        System.out.println("---->\n"+result+"\n<-----");
+
+
+        // The split happens in multiples of 7
+        String[] strs = result.replace("\"", "").split("(?:,)|(?:\r\n)");
+
+        int totalSmsReceived = strs.length / 7;
+
         List<Sms> smsList = new ArrayList<>();
+        for(int i=1; i<=totalSmsReceived; i++){
+            Sms sms = new Sms();
+//            sms.set
+
+            smsList.add(sms);
+        }
 
         int j = 0;
+        Sms sms = new Sms();
         while (true){
-            if(j==2){
+
+            if( j ==2 ){
                 break;
             }
+//            String result = gsmUtils.executeAT("AT+CMGL=\"ALL\"");
+//            System.out.println("---->\n"+result+"\n<-----");
+//
+//
+//            String[] strs = result.replace("\"", "").split("(?:,)|(?:\r\n)");
 
-            String result = gsmUtils.executeAT("AT+CMGL=\"ALL\"");
-            System.out.println("---->\n"+result+"\n<-----");
+//            Sms sms;
+            // in multiples of 7
+
+//            try{
+//
+//            }
 
 
-            String[] strs = result.replace("\"", "").split("(?:,)|(?:\r\n)");
 
 
-//            System.out.println(Arrays.toString(strs));
-            Sms sms;
+
+
             try{
                 for (int i = 1; i < strs.length - 1; i++) {
                     //String str1 = strs[i];
