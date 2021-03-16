@@ -71,13 +71,14 @@ public class SmsServiceImpl implements SmsService {
         Optional<Config> configVal = configRepository.findByConfigName("SERIAL_PORT");
 
 
-        if( 1==1 ){
+        /*if( 1==1 ){
             System.out.println("BOOOOOOOOM ----> " + configVal.get().getConfigValue());
             return;
-        }
+        }*/
 
         gsmUtils.initialize(configVal.get().getConfigValue());
         gsmUtils.executeAT("AT+CSCS=\"IRA\""); // To set normal English mode
+        gsmUtils.executeAT("AT+CPMS=\"SM\",\"ME\""); // To set normal English mode
 
         List<Sms> smsList = new ArrayList<>();
 

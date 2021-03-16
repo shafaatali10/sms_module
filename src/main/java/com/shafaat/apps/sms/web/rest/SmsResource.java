@@ -143,6 +143,8 @@ public class SmsResource {
 
     @GetMapping("/sms/scan")
     public ResponseEntity<String> processIncomingSms() {
+        // AT+CPMS=?
+        // AT+CPMS="SM", "ME"
         log.debug("REST request to scan incoming SMS: {}");
         smsService.scanIncomingSms();
         return ResponseEntity.ok().body("Scanning successful");

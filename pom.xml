@@ -576,11 +576,11 @@
                     <artifactId>jib-maven-plugin</artifactId>
                     <version>${jib-maven-plugin.version}</version>
                     <configuration>
-                        <from>
-                            <image>adoptopenjdk:11-jre-hotspot</image>
-                        </from>
+                        <!--<from>
+                            <image>registry.hub.docker.com/adoptopenjdk/openjdk11</image>
+                        </from>-->
                         <to>
-                            <image>sms_module:latest</image>
+                            <image>registry.hub.docker.com/shafaatali10/sms_module</image>
                         </to>
                         <container>
                             <entrypoint>
