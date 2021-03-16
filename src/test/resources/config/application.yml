@@ -21,7 +21,7 @@ spring:
     name: sms_module
   datasource:
     type: com.zaxxer.hikari.HikariDataSource
-    url: jdbc:h2:mem:sms_module;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+    #url: jdbc:h2:mem:sms_module;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
     name:
     username:
     password:
@@ -31,7 +31,7 @@ spring:
     serialization:
       write-durations-as-timestamps: false
   jpa:
-    database-platform: io.github.jhipster.domain.util.FixedH2Dialect
+    #database-platform: io.github.jhipster.domain.util.FixedH2Dialect
     open-in-view: false
     show-sql: false
     hibernate:

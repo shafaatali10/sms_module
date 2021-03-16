@@ -34,7 +34,7 @@ public class Sms implements Serializable {
     @Column(name = "date_time")
     private Instant dateTime;
 
-    @Column(name = "message")
+    @Column(name = "message", length = 1000)
     private String message;
 
     @Column(name = "is_pinned")

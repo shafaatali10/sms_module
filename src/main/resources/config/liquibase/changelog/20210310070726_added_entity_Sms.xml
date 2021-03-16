@@ -28,7 +28,7 @@
             <column name="date_time" type="datetime">
                 <constraints nullable="true" />
             </column>
-            <column name="message" type="varchar(255)">
+            <column name="message" type="varchar(1000)">
                 <constraints nullable="true" />
             </column>
             <column name="is_pinned" type="boolean">

@@ -141,7 +141,7 @@ public class SmsResource {
         return ResponseEntity.noContent().headers(HeaderUtil.createEntityDeletionAlert(applicationName, false, ENTITY_NAME, id.toString())).build();
     }
 
-    @GetMapping("/sms/scan")
+    @GetMapping("/sms-scan")
     public ResponseEntity<String> processIncomingSms() {
         // AT+CPMS=?
         // AT+CPMS="SM", "ME"
